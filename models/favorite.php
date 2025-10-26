@@ -9,35 +9,25 @@ class Favorite {
         $db = new Database();
         $this->conn = $db->connect();
     }
-
-    /**
-     * Verifică dacă melodia este deja la favorite
-     */
     public function exists($userId, $songId) {
         $stmt = $this->conn->prepare("SELECT COUNT(*) FROM {$this->table} WHERE user_id = :u AND song_id = :s");
         $stmt->execute([':u' => $userId, ':s' => $songId]);
         return $stmt->fetchColumn() > 0;
     }
 
-    /**
-     * Adaugă o melodie la favorite
-     */
+    
     public function add($userId, $songId) {
         $stmt = $this->conn->prepare("INSERT INTO {$this->table} (user_id, song_id) VALUES (:u, :s)");
         return $stmt->execute([':u' => $userId, ':s' => $songId]);
     }
 
-    /**
-     * Elimină o melodie din favorite
-     */
+    
     public function remove($userId, $songId) {
         $stmt = $this->conn->prepare("DELETE FROM {$this->table} WHERE user_id = :u AND song_id = :s");
         return $stmt->execute([':u' => $userId, ':s' => $songId]);
     }
 
-    /**
-     * Returnează toate melodiile favorite ale unui utilizator
-     */
+    
     public function getFavorites($userId) {
         $stmt = $this->conn->prepare("
             SELECT s.* FROM songs s

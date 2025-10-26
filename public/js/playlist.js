@@ -1,50 +1,49 @@
-// ======== Deschide popup-ul de selecție playlist ========
+
 async function openPlaylistDialog(songId) {
   try {
     const response = await fetch('/MusicHub/index.php?route=playlist&action=list');
     const playlists = await response.json();
 
-    // Elimină orice popup existent
+    
     const existing = document.querySelector('.playlist-dialog');
     if (existing) existing.remove();
 
-    // Creează structura popup-ului
+    
     const dialog = document.createElement('div');
     dialog.className = 'playlist-dialog';
     dialog.innerHTML = `
       <div class="playlist-popup">
         <h3>Adaugă în playlist</h3>
         
-        <label for="playlistSelect">Alege playlist existent:</label>
+        <label for="playlistSelect">Choose existing playlist:</label>
         <select id="playlistSelect">
           ${
             playlists.length
               ? playlists.map(p => `<option value="${p.id}">${p.title}</option>`).join('')
-              : '<option disabled selected>Niciun playlist încă</option>'
+              : '<option disabled selected>No playlists yet</option>'
           }
         </select>
 
-        <label for="newPlaylistName">Creează playlist nou:</label>
-        <input type="text" id="newPlaylistName" placeholder="Ex: Melodiile mele preferate">
+        <label for="newPlaylistName">Create new playlist:</label>
+        <input type="text" id="newPlaylistName" placeholder="Ex: My songs">
 
         <div class="actions">
-          <button class="btn-create" onclick="createPlaylistAndAdd(${songId})">Creează</button>
-          <button class="btn-add" onclick="addToPlaylist(${songId})">Adaugă</button>
-          <button class="btn-cancel" onclick="closePlaylistDialog()">Anulează</button>
+          <button class="btn-create" onclick="createPlaylistAndAdd(${songId})">Create</button>
+          <button class="btn-add" onclick="addToPlaylist(${songId})">Add</button>
+          <button class="btn-cancel" onclick="closePlaylistDialog()">Cancel</button>
         </div>
       </div>
     `;
     document.body.appendChild(dialog);
   } catch (err) {
-    console.error('Eroare la încărcarea playlisturilor:', err);
-    showToast('❌ Nu s-au putut încărca playlisturile.');
+    console.error('Error loading playlists:', err);
+    showToast(' Could not load playlists.');
   }
 }
 
-// ======== Creează un playlist nou și adaugă melodia ========
 async function createPlaylistAndAdd(songId) {
   const title = document.getElementById('newPlaylistName').value.trim();
-  if (!title) return showToast('⚠ Introdu un nume pentru playlist.');
+  if (!title) return showToast('Enter a name for the playlist.');
 
   const res = await fetch('/MusicHub/index.php?route=playlist&action=create', {
     method: 'POST',
@@ -54,18 +53,17 @@ async function createPlaylistAndAdd(songId) {
 
   const data = await res.json();
   if (data.success) {
-    showToast(data.message || '✅ Playlist creat și melodia adăugată!');
+    showToast(data.message || 'Playlist created and song added!');
     closePlaylistDialog();
   } else {
-    showToast(data.error || '❌ Eroare la creare playlist.');
+    showToast(data.error || 'Error creating playlist.');
   }
 }
 
-// ======== Adaugă melodia într-un playlist existent ========
 async function addToPlaylist(songId) {
   const playlistSelect = document.getElementById('playlistSelect');
   if (!playlistSelect || !playlistSelect.value) {
-    showToast('⚠ Selectează un playlist existent sau creează unul nou.');
+    showToast('Select an existing playlist or create a new one.');
     return;
   }
 
@@ -76,20 +74,19 @@ async function addToPlaylist(songId) {
   const data = await res.json();
 
   if (data.success) {
-    showToast('✅ Melodia a fost adăugată în playlist!');
+    showToast('The song has been added to the playlist!');
     closePlaylistDialog();
   } else {
-    showToast(data.error || '❌ Eroare la adăugare.');
+    showToast(data.error || 'Error');
   }
 }
 
-// ======== Închide popup-ul ========
+
 function closePlaylistDialog() {
   const dialog = document.querySelector('.playlist-dialog');
   if (dialog) dialog.remove();
 }
 
-// ======== Mic sistem Toast (înlocuiește alert) ========
 function showToast(message) {
   let toast = document.createElement('div');
   toast.className = 'toast';

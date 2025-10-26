@@ -1,9 +1,8 @@
 <?php include __DIR__ . '/header.php'; ?>
 
 <main class="home-container">
-    <!-- ======== GRID MELODII RECOMANDATE ======== -->
     <section class="songs-grid">
-        <h3 id="songs-title">🎵 Melodii recomandate</h3>
+        <h3 id="songs-title">🎵 Recommended songs</h3>
         <div class="grid" id="songs-grid">
             <?php foreach ($songs as $song): ?>
                 <div class="song-card"
@@ -25,7 +24,7 @@
     </section>
 </main>
 
-<!-- ======== MODAL MELODIE (Popup) ======== -->
+
 <div id="songModal" class="song-modal hidden">
     <div class="song-modal-content">
         <button class="modal-close" onclick="closeSongModal()">✖</button>
@@ -40,7 +39,7 @@
 
         <div class="modal-actions">
             <button onclick="toggleModalYT()">▶ Play</button>
-            <button onclick="addToFavorite(event, modalSongId)">❤️ Favorite</button>
+            <button onclick="addToFavorite(event, modalSongId)">❤️ Favorites</button>
             <button onclick="openPlaylistDialog(modalSongId)">➕ Playlist</button>
         </div>
     </div>

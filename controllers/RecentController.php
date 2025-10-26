@@ -10,7 +10,7 @@ class RecentController {
         $songId = $_GET['song_id'] ?? null;
 
         if (!$userId || !$songId) {
-            echo json_encode(['error' => 'Date invalide.']);
+            echo json_encode(['error' => 'Invalid data.']);
             return;
         }
 

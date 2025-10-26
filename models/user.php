@@ -28,17 +28,14 @@ class User {
     }
 
     public function register($username, $password, $profileImage = null) {
-        // verificăm dacă userul există deja
         $check = $this->conn->prepare("SELECT * FROM {$this->table} WHERE username = :username");
         $check->execute([':username' => $username]);
         if ($check->rowCount() > 0) {
-            return "Username indisponibil.";
+            return "Username unavailable.";
         }
 
-        // criptează parola
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // inserează userul
         $insert = $this->conn->prepare("
             INSERT INTO {$this->table} (username, password, profile_image)
             VALUES (:username, :password, :profile_image)
@@ -49,6 +46,6 @@ class User {
             ':profile_image' => $profileImage
         ]);
 
-        return $ok ? true : "Eroare la înregistrare.";
+        return $ok ? true : "Registration error.";
     }
 }

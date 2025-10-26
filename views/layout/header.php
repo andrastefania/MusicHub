@@ -21,20 +21,19 @@ $user = $_SESSION['user'] ?? null;
 <body>
 
 
-
-<!-- ======== MENIU SUPERIOR CU FILTRE ======== -->
+>
 <?php if (isset($playlists, $artists, $genres)): ?>
 <section class="menu-section">
     <div class="menu-bar">
-        <!-- Favorite -->
-        <button class="menu-btn" onclick="filterBy('favorites')">🎧 Favorite</button>
+        
+        <button class="menu-btn" onclick="filterBy('favorites')">🎧 Favorites</button>
 
-        <!-- Recente -->
-        <button class="menu-btn" onclick="filterBy('recent')">🕒 Recente</button>
+        
+        <button class="menu-btn" onclick="filterBy('recent')">🕒 Recent</button>
 
-        <!-- Playlisturi -->
+        
         <div class="dropdown">
-            <button class="menu-btn">🎶 Playlisturi ⮟</button>
+            <button class="menu-btn">🎶 Playlists ⮟</button>
             <div class="dropdown-content">
                 <?php foreach ($playlists as $p): ?>
                     <a href="#" onclick="filterBy('playlist', '<?= htmlspecialchars($p) ?>')">
@@ -44,9 +43,9 @@ $user = $_SESSION['user'] ?? null;
             </div>
         </div>
 
-        <!-- Artiști -->
+        
         <div class="dropdown">
-            <button class="menu-btn">🎤 Artiști ⮟</button>
+            <button class="menu-btn">🎤 Artists ⮟</button>
             <div class="dropdown-content">
                 <?php foreach ($artists as $a): ?>
                     <a href="#" onclick="filterBy('artist', '<?= htmlspecialchars($a) ?>')">
@@ -56,9 +55,9 @@ $user = $_SESSION['user'] ?? null;
             </div>
         </div>
 
-        <!-- Genuri -->
+        
         <div class="dropdown">
-            <button class="menu-btn">🎼 Genuri ⮟</button>
+            <button class="menu-btn">🎼 Genres ⮟</button>
             <div class="dropdown-content">
                 <?php foreach ($genres as $g): ?>
                     <a href="#" onclick="filterBy('genre', '<?= htmlspecialchars($g) ?>')">

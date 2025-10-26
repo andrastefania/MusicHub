@@ -1,6 +1,5 @@
 let modalSongId = null;
 
-// ======== Deschide fereastra modal ========
 function openSongModal(card) {
     const modal = document.getElementById('songModal');
     const ytFrame = document.getElementById('modalYT');
@@ -11,10 +10,9 @@ function openSongModal(card) {
     document.getElementById('modalArtist').textContent = card.dataset.artist;
     img.src = card.dataset.img;
 
-    // ===== Transformăm linkul YouTube într-un link embed =====
     let ytLink = card.dataset.yt || "";
 
-    // Înlocuiește orice variantă de link (youtu.be / youtube.com / music.youtube.com)
+    
     ytLink = ytLink.replace("music.youtube.com", "www.youtube.com");
     if (ytLink.includes("watch?v=")) {
         ytLink = ytLink.replace("watch?v=", "embed/");
@@ -24,25 +22,22 @@ function openSongModal(card) {
 
     ytFrame.src = ytLink;
 
-    // La început arătăm doar imaginea
     ytFrame.classList.add('hidden');
     img.classList.remove('hidden');
     modal.classList.remove('hidden');
 }
 
-// ======== Închide modalul ========
 function closeSongModal() {
     const modal = document.getElementById('songModal');
     const ytFrame = document.getElementById('modalYT');
     const img = document.getElementById('modalImage');
 
-    ytFrame.src = ""; // oprește video
+    ytFrame.src = ""; 
     ytFrame.classList.add('hidden');
     img.classList.remove('hidden');
     modal.classList.add('hidden');
 }
 
-// ======== Comută între imagine și video ========
 function toggleModalYT() {
     const yt = document.getElementById('modalYT');
     const img = document.getElementById('modalImage');
@@ -50,19 +45,18 @@ function toggleModalYT() {
     yt.classList.toggle('hidden');
     img.classList.toggle('hidden');
 
-    // ===== Adaugă imediat melodia la Recente =====
     if (!yt.classList.contains('hidden')) {
         fetch(`/MusicHub/index.php?route=recent&song_id=${modalSongId}`)
             .then(res => res.json())
             .then(data => {
-                if (data.success) console.log("✅ Melodia adăugată la Recente");
-                else console.warn("⚠️ Nu s-a putut salva la Recente");
+                if (data.success) console.log("Song added to Recent");
+                else console.warn("Could not save to Recents");
             })
-            .catch(err => console.error("❌ Eroare la salvare Recente:", err));
+            .catch(err => console.error("Error saving Recent:", err));
     }
 }
 
-// ======== Favorite: adaugă ========
+
 function addToFavorite(event, songId) {
     event.stopPropagation();
     const btn = event.currentTarget;
@@ -72,19 +66,19 @@ function addToFavorite(event, songId) {
         .then(data => {
             if (data.success) {
                 btn.classList.add('favorited');
-                btn.textContent = '💖 În favorite';
-                showToast('✅ Melodia a fost adăugată la favorite!');
+                btn.textContent = '💖 In favorites';
+                showToast('The song has been added to favorites!');
             } else {
-                showToast('⚠ Melodia este deja în favorite.');
+                showToast('The song is already in favorites.');
             }
         })
         .catch(err => {
-            console.error('Eroare la favorite:', err);
-            showToast('❌ Eroare la comunicarea cu serverul.');
+            console.error('Error', err);
+            showToast('Server Error');
         });
 }
 
-// ======== Adaugă la playlist ========
+
 function openPlaylistDialog(songId) {
     const dialog = document.getElementById('playlistDialog');
     if (dialog) {
@@ -93,7 +87,7 @@ function openPlaylistDialog(songId) {
     }
 }
 
-// ======== Mic sistem Toast ========
+
 function showToast(message) {
     let toast = document.createElement('div');
     toast.className = 'toast';

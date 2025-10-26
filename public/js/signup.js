@@ -4,8 +4,8 @@ const avatarContainer = document.querySelector(".avatar-container");
 const hiddenInput = document.getElementById("selectedAvatar");
 
 function showAvatar(index) {
-  // Calculează poziția în funcție de index
-  const offset = -index * 220; // 220px = lățimea containerului
+  
+  const offset = -index * 220; 
   avatarContainer.style.transform = `translateX(${offset}px)`;
 
   avatars.forEach((img, i) => img.classList.toggle("active", i === index));
@@ -22,5 +22,4 @@ document.querySelector(".avatar-next").addEventListener("click", () => {
   showAvatar(currentAvatar);
 });
 
-// Inițializare la primul avatar
 showAvatar(0);

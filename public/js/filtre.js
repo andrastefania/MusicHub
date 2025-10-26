@@ -1,13 +1,13 @@
-// ======== Actualizează titlul dinamic ========
+
 function updateSongsTitle(filterType, filterValue) {
     const titleEl = document.getElementById("songs-title");
 
     switch (filterType) {
         case "favorites":
-            titleEl.textContent = "🎧 Favoritele tale";
+            titleEl.textContent = "🎧 Your favourites";
             break;
         case "recent":
-            titleEl.textContent = "🕒 Melodiile recente";
+            titleEl.textContent = "🕒 Recent songs";
             break;
         case "playlist":
             titleEl.textContent = `🎶 Playlist: ${filterValue}`;
@@ -16,15 +16,14 @@ function updateSongsTitle(filterType, filterValue) {
             titleEl.textContent = `🎤 Artist: ${filterValue}`;
             break;
         case "genre":
-            titleEl.textContent = `🎼 Gen: ${filterValue}`;
+            titleEl.textContent = `🎼 Genre: ${filterValue}`;
             break;
             
         default:
-            titleEl.textContent = "🎵 Melodii recomandate";
+            titleEl.textContent = "🎵 Recommended songs";
             break;
     }
 
-    // Efect mic de tranziție vizuală (fade)
     titleEl.style.opacity = 0;
     setTimeout(() => {
         titleEl.style.transition = "opacity 0.4s";
@@ -33,7 +32,6 @@ function updateSongsTitle(filterType, filterValue) {
 }
 
 
-// ======== Filtrare melodii dinamică ========
 function filterBy(type, value = null) {
     const url = `/MusicHub/index.php?route=filter&type=${encodeURIComponent(type)}${value ? `&value=${encodeURIComponent(value)}` : ''}`;
 
@@ -41,31 +39,29 @@ function filterBy(type, value = null) {
         .then(response => response.json())
         .then(data => {
             const grid = document.querySelector('.grid');
-            grid.innerHTML = ''; // curățăm grila anterioară
+            grid.innerHTML = ''; 
 
-            // Dacă nu există melodii
+            i
             if (!data || data.length === 0) {
                 grid.innerHTML = `<p style="text-align:center; color:#333;">Nicio melodie găsită pentru ${value || type}.</p>`;
-                updateSongsTitle(); // revine la titlu implicit
+                updateSongsTitle(); 
                 return;
             }
 
-            // Actualizăm titlul dinamic
+            
             updateSongsTitle(type, value);
 
-            // Reafișăm fiecare melodie filtrată
             data.forEach(song => {
                 const card = document.createElement('div');
                 card.classList.add('song-card');
 
-                // Setăm datele pentru modal
+                
                 card.dataset.id = song.id;
                 card.dataset.title = song.title;
                 card.dataset.artist = song.artist;
                 card.dataset.img = `/MusicHub/${song.image_path}`;
                 card.dataset.yt = song.yt_link;
 
-                // eveniment click → deschide modal
                 card.onclick = () => openSongModal(card);
 
                 card.innerHTML = `
@@ -78,20 +74,19 @@ function filterBy(type, value = null) {
                 grid.appendChild(card);
             });
 
-            // efect de apariție smooth
             grid.style.opacity = 0;
             setTimeout(() => {
                 grid.style.transition = 'opacity 0.4s';
                 grid.style.opacity = 1;
             }, 50);
         })
-        .catch(err => console.error('Eroare la filtrare:', err));
+        .catch(err => console.error('Filtering error:', err));
 }
 function goHome() {
   const titleEl = document.getElementById("songs-title");
-  titleEl.textContent = "🎵 Melodii recomandate";
+  titleEl.textContent = "🎵 Recommended songs";
 
-  // Cerere către backend (apelăm direct ruta 'home')
+  
   fetch("/MusicHub/index.php?route=home&ajax=1")
     .then(response => response.json())
     .then(data => {
@@ -99,11 +94,11 @@ function goHome() {
       grid.innerHTML = "";
 
       if (!data || data.length === 0) {
-        grid.innerHTML = `<p style="text-align:center; color:#333;">Nu s-au găsit melodii.</p>`;
+        grid.innerHTML = `<p style="text-align:center; color:#333;">No songs found.</p>`;
         return;
       }
 
-      // Reafișăm cardurile cu melodii random
+      
       data.forEach(song => {
         const card = document.createElement("div");
         card.classList.add("song-card");
@@ -126,11 +121,11 @@ function goHome() {
         grid.appendChild(card);
       });
     })
-    .catch(err => console.error("Eroare la reîncărcarea melodiilor:", err));
+    .catch(err => console.error("Error reloading songs:", err));
 }
-// ======== Logout cu confirmare ========
+
 function logout() {
-  const confirmLogout = confirm("Sigur vrei să te deconectezi?");
+  const confirmLogout = confirm("Are you sure you want to log out?");
   if (confirmLogout) {
     window.location.href = "/MusicHub/index.php?route=logout";
   }

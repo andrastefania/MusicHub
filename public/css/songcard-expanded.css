@@ -1,4 +1,4 @@
-/* ======== MODAL MELODIE (EXPANDED VIEW) ========= */
+
 .song-modal {
   position: fixed;
   top: 0;
@@ -21,20 +21,20 @@
   background: white;
   border-radius: 16px;
   padding: 20px;
-  width: 600px;           /* ✅ dimensiune fixă pe lățime */
-  height: 500px;          /* ✅ dimensiune fixă pe înălțime */
+  width: 600px;           
+  height: 500px;          
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
   text-align: center;
   position: relative;
   animation: zoomIn 0.25s ease-out;
 
-  /* ✅ aliniere internă uniformă */
+ 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-/* ===== CLOSE BUTTON ===== */
+
 .modal-close {
   position: absolute;
   top: 8px;
@@ -54,29 +54,28 @@
   transform: scale(1.15);
 }
 
-/* ===== MEDIA (IMAGINE + VIDEO) ===== */
-/* ===== MEDIA (IMAGINE + VIDEO) ===== */
+
 .modal-media {
   width: 100%;
-  height: 320px;          /* 🔹 crește înălțimea imaginii */
+  height: 320px;          
   overflow: hidden;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;       /* fundal negru pentru un efect cinematografic */
+  background: #000;       
 }
 
 .modal-media img,
 .modal-media iframe {
   width: 100%;
   height: 100%;
-  object-fit: cover;      /* 🔹 se asigură că imaginea umple complet zona */
+  object-fit: cover;      
   border-radius: 12px;
 }
 
 
-/* ===== TITLU + ARTIST ===== */
+
 #modalTitle {
   font-size: 1.4rem;
   color: #023047;
@@ -89,7 +88,7 @@
   margin-bottom: 15px;
 }
 
-/* ===== ACTION BUTTONS ===== */
+
 .modal-actions {
   display: flex;
   justify-content: space-around;
@@ -111,7 +110,7 @@
   background: #005f8c;
 }
 
-/* ======== ANIMAȚII ========= */
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

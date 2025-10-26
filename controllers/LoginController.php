@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../models/User.php'; //incarca fisierul
+require_once __DIR__ . '/../models/User.php'; 
 
 class LoginController
 {
@@ -17,7 +17,7 @@ class LoginController
             $username = trim($_POST['username'] ?? '');
             $password = trim($_POST['password'] ?? '');
 
-            $userModel = new User(); // accesare baza de date
+            $userModel = new User(); 
             $user = $userModel->login($username, $password);
 
             if ($user) {

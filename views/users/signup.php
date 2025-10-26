@@ -41,10 +41,10 @@
 
         <input type="hidden" name="profile_image" id="selectedAvatar" value="public/images/profile_photos/profile_1.jpeg">
 
-        <button type="submit">Creează cont</button>
+        <button type="submit">Create account</button>
     </form>
 
-    <a class="link" href="index.php?route=login">Ai deja cont? Loghează-te</a>
+    <a class="link" href="index.php?route=login">Already have an account? Log in</a>
 </div>
 
 <script src="public/js/signup.js"></script>

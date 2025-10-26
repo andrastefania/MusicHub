@@ -1,4 +1,4 @@
-/* ===== Popup pentru playlist ===== */
+
 .playlist-dialog {
   position: fixed;
   top: 0;
@@ -72,7 +72,7 @@
   background: #005f8c;
 }
 
-/* ===== Toast ===== */
+
 .toast {
   position: fixed;
   bottom: 25px;

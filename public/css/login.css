@@ -1,4 +1,4 @@
-/* ======== RESET & GLOBAL ========= */
+
 * {
   box-sizing: border-box;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
@@ -10,10 +10,10 @@ body.center {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, #bfe9ff, #89cff0); /* bleu deschis */
+  background: linear-gradient(135deg, #bfe9ff, #89cff0); 
 }
 
-/* ======== CARDURI (login/signup) ========= */
+
 .card {
   width: 100%;
   max-width: 360px;
@@ -79,7 +79,6 @@ button:hover {
   text-decoration: underline;
 }
 
-/* ======== BUTOANE SECUNDARE ========= */
 .btn-secondary {
   display: block;
   width: 100%;
@@ -112,7 +111,7 @@ button:hover {
   background: #457b9d;
 }
 
-/* ======== CARUSEL IMAGINI (selectare avatar) ========= */
+
 .avatar-carousel {
   position: relative;
   width: 220px;
@@ -127,7 +126,7 @@ button:hover {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Containerul de imagini */
+
 .avatar-container {
   display: flex;
   transition: transform 0.4s ease-in-out;
@@ -135,7 +134,7 @@ button:hover {
   height: 100%;
 }
 
-/* Fiecare imagine de profil */
+
 .avatar {
   width: 200px;
   height: 200px;
@@ -148,7 +147,7 @@ button:hover {
   transition: all 0.3s ease;
 }
 
-/* Imaginea activă */
+
 .avatar.active {
   opacity: 1;
   transform: scale(1);
@@ -156,7 +155,7 @@ button:hover {
   box-shadow: 0 0 15px rgba(0, 119, 182, 0.4);
 }
 
-/* ======== BUTOANE STÂNGA/DREAPTA ======== */
+
 .avatar-prev,
 .avatar-next {
   position: absolute;
@@ -193,7 +192,7 @@ button:hover {
   transform: translateY(-50%) scale(1.15);
 }
 
-/* Mic efect responsive */
+
 @media (max-width: 500px) {
   .avatar-carousel {
     width: 180px;

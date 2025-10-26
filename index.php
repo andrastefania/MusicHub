@@ -42,7 +42,7 @@ switch ($route) {
 
     default:
         http_response_code(404);
-        echo "404 - Pagina nu există.";
+        echo "404 - The page does not exist.";
         break;
 }
 

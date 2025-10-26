@@ -10,7 +10,7 @@ class Playlist {
         $this->conn = $db->connect();
     }
 
-    // Returnează toate playlisturile unui utilizator
+    
     public function getAllByUser($userId) {
         $stmt = $this->conn->prepare("SELECT title FROM {$this->table} WHERE user_id = :u ORDER BY title ASC");
         $stmt->execute([':u' => $userId]);

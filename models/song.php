@@ -10,7 +10,6 @@ class Song {
         $this->conn = $db->connect();
     }
 
-    // 🎵 Get random songs for homepage
     public function getRandom($limit = 6) {
         $stmt = $this->conn->prepare("SELECT * FROM {$this->table} ORDER BY RAND() LIMIT :limit");
         $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
@@ -18,19 +17,16 @@ class Song {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // 🎤 Get list of unique artists
     public function getArtists() {
         $stmt = $this->conn->query("SELECT DISTINCT artist FROM {$this->table} WHERE artist <> '' ORDER BY artist ASC");
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    // 🎼 Get list of unique genres
     public function getGenres() {
         $stmt = $this->conn->query("SELECT DISTINCT genre FROM {$this->table} WHERE genre <> '' ORDER BY genre ASC");
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    // 🎶 Get songs filtered by artist, genre, playlist, or favorites
     public function filterBy($type, $value, $userId = null) {
         switch ($type) {
             case 'artist':
