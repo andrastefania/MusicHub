@@ -1,24 +1,24 @@
 <?php
 require_once __DIR__ . '/../models/User.php';
 
-class SignupController
-{
-    public function handle()
-    {
+class SignupController {
+    public function handle() {
+        $error = '';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = trim($_POST['username'] ?? '');
-            $password = trim($_POST['password'] ?? '');
-            $confirm  = trim($_POST['confirm'] ?? '');
+            $username = trim($_POST['username']);
+            $password = $_POST['password'];
+            $confirm  = $_POST['confirm'];
+            $profileImage = $_POST['profile_image'] ?? null;
 
             if ($password !== $confirm) {
-                $error = "Passwords not identical!!!";
+                $error = "Passwords not identical !!!";
             } else {
                 $userModel = new User();
-                $result = $userModel->register($username, $password);
+                $result = $userModel->register($username, $password, $profileImage);
 
                 if ($result === true) {
-                    // Redirect corect prin router
-                    header('Location: index.php?route=login&signup=success');
+                    header("Location: index.php?route=login");
                     exit;
                 } else {
                     $error = $result;

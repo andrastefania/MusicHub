@@ -70,4 +70,5 @@ $user = $_SESSION['user'] ?? null;
     </div>
 </section>
 <button class="home-floating" onclick="goHome()">🏠</button>
+<button class="logout-floating" onclick="logout()">🚪</button>
 <?php endif; ?>

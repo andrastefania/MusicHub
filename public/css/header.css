@@ -84,7 +84,7 @@
 .home-floating {
   position: absolute;
   top: 15px;
-  right: 25px;
+  right: 80px;
   background-color: #1d3557;
   color: #fff;
   border: none;
@@ -101,3 +101,24 @@
   background-color: #457b9d;
   transform: scale(1.1);
 }
+.logout-floating {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  background-color: #1d3557;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logout-floating:hover {
+  background-color: #457b9d;
+  transform: scale(1.1);
+}
+

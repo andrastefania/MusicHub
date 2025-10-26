@@ -35,6 +35,10 @@ switch ($route) {
         require_once 'controllers/RecentController.php';
         (new RecentController())->add();
         break;
+    case 'logout':
+        require_once 'controllers/LogoutController.php';
+        (new LogoutController())->handle();
+        break;
 
     default:
         http_response_code(404);
