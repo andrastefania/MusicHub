@@ -30,7 +30,7 @@
             <button type="button" class="avatar-prev">&#10094;</button>
             <div class="avatar-container">
                 <img src="public/images/profile_photos/profile_1.jpeg" class="avatar active" data-path="public/images/profile_photos/profile_1.jpeg">
-                <img src="public/images/profile_photos/profile_2.jpegg" class="avatar" data-path="public/images/profile_photos/profile_2.jpeg">
+                <img src="public/images/profile_photos/profile_2.jpeg" class="avatar" data-path="public/images/profile_photos/profile_2.jpeg">
                 <img src="public/images/profile_photos/profile_3.jpeg" class="avatar" data-path="public/images/profile_photos/profile_3.jpeg">
                 <img src="public/images/profile_photos/profile_4.jpeg" class="avatar" data-path="public/images/profile_photos/profile_4.jpeg">
                 <img src="public/images/profile_photos/profile_5.jpeg" class="avatar" data-path="public/images/profile_photos/profile_5.jpeg">

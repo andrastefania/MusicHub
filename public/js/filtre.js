@@ -128,5 +128,13 @@ function goHome() {
     })
     .catch(err => console.error("Eroare la reîncărcarea melodiilor:", err));
 }
+// ======== Logout cu confirmare ========
+function logout() {
+  const confirmLogout = confirm("Sigur vrei să te deconectezi?");
+  if (confirmLogout) {
+    window.location.href = "/MusicHub/index.php?route=logout";
+  }
+}
+
 
 
