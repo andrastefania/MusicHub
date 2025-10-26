@@ -1,0 +1,103 @@
+/* ======== HEADER & MENIU PRINCIPAL ========= */
+.menu-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 25vh;
+  background: linear-gradient(135deg, #bfe9ff, #89cff0);
+}
+
+.menu-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: linear-gradient(180deg, #dff5ff 0%, #bde0f6 100%);
+  padding: 20px 30px;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ======== BUTOANE DE MENIU ========= */
+.menu-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  min-width: 150px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.menu-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ======== DROPDOWN MENIU ========= */
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  min-width: 180px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  z-index: 1000;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.dropdown-content a {
+  color: #0077b6;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  font-weight: 500;
+  border-bottom: 1px solid #f1f1f1;
+  transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+  background-color: #e3f3ff;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.home-floating {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  background-color: #1d3557;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.home-floating:hover {
+  background-color: #457b9d;
+  transform: scale(1.1);
+}
